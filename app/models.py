@@ -8,6 +8,7 @@ class Usuario(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(150), nullable=False)
+    tarjeta_uid = db.Column(db.String(120), nullable=True, unique=True, index=True)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     asistencias = db.relationship(
@@ -21,6 +22,7 @@ class Usuario(db.Model):
         return {
             "id": self.id,
             "nombre": self.nombre,
+            "tarjeta_uid": self.tarjeta_uid,
             "created_at": self.created_at.isoformat(),
         }
 
